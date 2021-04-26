@@ -5,10 +5,9 @@ from pymessenger.bot import Bot
 
 app = Flask(__name__)
 
-#ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
-#VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
-ACCESS_TOKEN = 'EAANQOefnvZB4BALNisIFnJW12g0RpMe9oDSSw14xh8sJRWvXtLbQy8FEBlk8wvDxrHTUdaK4sN8IfIP7P6J00FHKI9vvTcA9ZCAgsm5uEj2vWLEqeXY5sawnZBOTebuwvPIIlTavWSo28ZCCbcB572cfPwt2ZCohFNl8KFSKsrAZDZD'
-VERIFY_TOKEN = 'MY_TESTING_TOKEN'
+ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
+VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
+
 
 bot = Bot(ACCESS_TOKEN)
 
