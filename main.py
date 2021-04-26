@@ -30,8 +30,10 @@ def receive_message():
                 #определяем ID, чтобы знать куда отправлять ответ
                     recipient_id = message['sender']['id']
                 if message['message'].get('text'):
-                    response_sent_text = get_message()
-                    send_message(recipient_id, response_sent_text)
+                    text = message['message'].get('text').lower()
+                    if 'цена' in text:
+                        send_message(recipient_id, 'Какой город вас интересует?')
+                    
                 #если пользователь отправил GIF, фото, видео и любой не текстовый объект
                 if message['message'].get('attachments'):
                     response_sent_nontext = get_message()
