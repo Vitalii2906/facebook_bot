@@ -1,1 +1,1 @@
-web: gunicorn app:app --log-main.py=-
+web: gunicorn main:app --log-main.py=-
