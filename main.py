@@ -58,5 +58,22 @@ def get_message():
     sample_responses = ["Потрясающе!", "Я вами горжусь!", "Продолжайте в том же духе!", "Лучшее, что я когда-либо видел!"]
     return random.choice(sample_responses)
 
+def set_get_started(self, gs_obj):
+    """Set a get started button shown on welcome screen for first time users
+    https://developers.facebook.com/docs/messenger-platform/reference/messenger-profile-api/get-started-button
+    Input:
+      gs_obj: Your formatted get_started object as described by the API docs
+    Output:
+      Response from API as <dict>
+    """
+    request_endpoint = '{0}/me/messenger_profile'.format(self.graph_url)
+    response = requests.post(
+        request_endpoint,
+        params = self.auth_args,
+        json = gs_obj
+    )
+    result = response.json()
+    return result
+
 if __name__ == '__main__':
     app.run()
