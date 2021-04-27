@@ -2,11 +2,17 @@ import os
 import random
 from flask import Flask, request
 from pymessenger.bot import Bot
+import json
+
+
+ 
+
 
 app = Flask(__name__)
 
 ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
 VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
+
 
 
 bot = Bot(ACCESS_TOKEN)
@@ -58,22 +64,11 @@ def get_message():
     sample_responses = ["Потрясающе!", "Я вами горжусь!", "Продолжайте в том же духе!", "Лучшее, что я когда-либо видел!"]
     return random.choice(sample_responses)
 
-def set_get_started(self, gs_obj):
-    """Set a get started button shown on welcome screen for first time users
-    https://developers.facebook.com/docs/messenger-platform/reference/messenger-profile-api/get-started-button
-    Input:
-      gs_obj: Your formatted get_started object as described by the API docs
-    Output:
-      Response from API as <dict>
-    """
-    request_endpoint = '{0}/me/messenger_profile'.format(self.graph_url)
-    response = requests.post(
-        request_endpoint,
-        params = self.auth_args,
-        json = gs_obj
-    )
-    result = response.json()
-    return result
+def menu():
+    with open("persistent_menu.json", "r") as read_file:
+        global data
+        data = json.load(read_file)
+    return bot.set_persistent_menu(data)
 
 if __name__ == '__main__':
     app.run()
